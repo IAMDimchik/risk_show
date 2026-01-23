@@ -1,0 +1,18 @@
+{
+  "port": 23000,
+  "pollInterval": 1000,
+  "servers": [
+    {
+        "name": "100$_50%",
+        "url": "http://i.mt5.bmgd.xyz:43001"
+      },    {
+      "name": "200$_25%",
+      "url": "http://i.mt5.bmgd.xyz:49101"
+    },
+    {
+      "name": "300$_10%",
+      "url": "http://i.mt5.bmgd.xyz:49201"
+    }
+  ],
+  "requestTimeout": 5000
+}
