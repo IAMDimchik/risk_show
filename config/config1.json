@@ -1,0 +1,24 @@
+{
+  "port": 23000,
+  "pollInterval": 1000,
+  "servers": [
+    {
+        "name": "200$_30%",
+        "url": "http://i.mt5riskm.bmgd.xyz:43001",
+        "date_start_trading": "2026.02.13",
+        "start_trading_balance": 100
+      },    {
+      "name": "300$_25%",
+      "url": "http://i.mt5riskm.bmgd.xyz:49101",
+      "date_start_trading": "2026.02.13",
+      "start_trading_balance": 200
+    },
+    {
+      "name": "400$_20%",
+      "url": "http://i.mt5riskm.bmgd.xyz:49201",
+      "date_start_trading": "2026.02.13",
+      "start_trading_balance": 400
+    }
+  ],
+  "requestTimeout": 5000
+}

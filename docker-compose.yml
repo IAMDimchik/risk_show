@@ -1,0 +1,54 @@
+version: '3.5'
+
+services:
+  risk-show-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: risk-show-1
+    restart: unless-stopped
+    ports:
+      - "23000:23000"
+    volumes:
+      - ./server.js:/app/server.js:ro
+      - ./config/config1.json:/app/config/config1.json:ro
+      - ./node_modules:/app/node_modules
+    environment:
+      - NODE_ENV=production
+      - CONFIG_PATH=/app/config/config1.json
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:23000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - risk-network
+
+  risk-show-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: risk-show-2
+    restart: unless-stopped
+    ports:
+      - "23001:23001"
+    volumes:
+      - ./server.js:/app/server.js:ro
+      - ./config/config2.json:/app/config/config2.json:ro
+      - ./node_modules:/app/node_modules
+    environment:
+      - NODE_ENV=production
+      - CONFIG_PATH=/app/config/config2.json
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:23001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - risk-network
+
+networks:
+  risk-network:
+    driver: bridge
