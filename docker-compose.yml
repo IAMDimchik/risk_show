@@ -11,11 +11,15 @@ services:
       - "23000:23000"
     volumes:
       - ./server.js:/app/server.js:ro
+      - ./dataCollector.js:/app/dataCollector.js:ro
+      - ./chartRoutes.js:/app/chartRoutes.js:ro
       - ./config/config1.json:/app/config/config1.json:ro
       - ./node_modules:/app/node_modules
+      - ./data:/app/data
     environment:
       - NODE_ENV=production
       - CONFIG_PATH=/app/config/config1.json
+      - HISTORY_DIR=/app/data
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:23000/health"]
       interval: 30s
@@ -35,11 +39,15 @@ services:
       - "23001:23001"
     volumes:
       - ./server.js:/app/server.js:ro
+      - ./dataCollector.js:/app/dataCollector.js:ro
+      - ./chartRoutes.js:/app/chartRoutes.js:ro
       - ./config/config2.json:/app/config/config2.json:ro
       - ./node_modules:/app/node_modules
+      - ./data:/app/data
     environment:
       - NODE_ENV=production
       - CONFIG_PATH=/app/config/config2.json
+      - HISTORY_DIR=/app/data
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:23001/health"]
       interval: 30s
